@@ -1,68 +1,54 @@
 # DSNML
 
-This repository contains a retail sales forecasting workflow built around a CatBoost regressor pipeline.
+This repository contains a retail sales forecasting workflow built around a CatBoost regression pipeline.
 
 ## Project overview
 
-The goal is to predict `total_sales` from retail data using structured tabular features, targeted feature engineering, and cross-validation.
+The goal is to predict `total_sales` using structured retail data, feature engineering, and cross-validation.
 
 ## Repository structure
 
-- `notebooks/DSNML_GitHub_version.ipynb` – interactive Colab notebook for exploration, feature engineering, modelling, and submission generation.
-- `scripts/dsnml_training_pipeline.py` – standalone Python training script that can run in a local environment or Colab.
-- `README.md` – repo instructions and usage guide.
+- `notebooks/DSNML_GitHub_version.ipynb` — polished Colab notebook for exploration, modelling, and submission generation.
+- `scripts/dsnml_training_pipeline.py` — local/Colab-ready training pipeline with cross-validation and experiment logging.
+- `requirements.txt` — Python dependency list.
+- `README.md` — project usage notes.
 
-## Data requirements
+## Data files
 
-Place the following files in the repository root or update the paths in the script:
+Place the dataset files in the repository root before running the notebook or script:
 
 - `train.csv`
 - `test.csv`
 
-Expected columns include:
+The expected target column is:
 
-- `id`
-- `product_code`
-- `product_category`
-- `fat_content`
-- `product_weight_kg`
-- `product_price`
-- `store_code`
-- `store_size`
-- `store_location_tier`
-- `store_format`
 - `total_sales`
 
-## Notebook usage
+## Quick start
 
-1. Open the notebook in Google Colab.
-2. Upload or mount your dataset files.
-3. Run the cells in order.
-4. The notebook generates a Kaggle-style submission file named `final_catboost_submission.csv`.
+1. Create a virtual environment.
+2. Install dependencies:
 
-## Script usage
+```bash
+pip install -r requirements.txt
+```
 
-From the repo root:
+3. Run the training pipeline:
 
 ```bash
 python scripts/dsnml_training_pipeline.py
 ```
 
-The script will:
+This will produce:
 
-- load `train.csv` and `test.csv`
-- perform basic cleaning and deterministic feature engineering
-- train a CatBoost regressor using 5-fold cross-validation
-- save `final_catboost_submission.csv`
+- `final_catboost_submission.csv`
+- `experiment_log.csv`
+- `oof_predictions.csv`
 
-## Environment
+## Notebook usage
 
-Recommended packages:
-
-```bash
-pip install pandas numpy matplotlib seaborn scikit-learn catboost
-```
+Open the notebook in Google Colab or Jupyter, and run the cells in order.
 
 ## Notes
 
-This project is intended as a practical retail sales modeling workflow and is suitable for experimentation, CV benchmarking, and submission generation.
+The project uses a deterministic feature engineering strategy and CatBoost with 5-fold cross-validation for robust retail forecasting.
