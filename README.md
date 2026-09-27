@@ -1,26 +1,26 @@
 # DSNML
 
-This repository contains a retail sales forecasting workflow built around a CatBoost regression pipeline.
+This repository contains a retail sales forecasting workflow built around a benchmarked CatBoost, LightGBM, and XGBoost pipeline.
 
 ## Project overview
 
-The goal is to predict `total_sales` using structured retail data, feature engineering, and cross-validation.
+The goal is to predict `total_sales` from retail data using structured tabular features, targeted feature engineering, and cross-validation.
 
 ## Repository structure
 
-- `notebooks/DSNML_GitHub_version.ipynb` — polished Colab notebook for exploration, modelling, and submission generation.
-- `scripts/dsnml_training_pipeline.py` — local/Colab-ready training pipeline with cross-validation and experiment logging.
-- `requirements.txt` — Python dependency list.
-- `README.md` — project usage notes.
+- `notebooks/DSNML_GitHub_version.ipynb` — interactive Colab notebook for exploration, feature engineering, and model benchmarking.
+- `scripts/dsnml_training_pipeline.py` — training script for benchmarking and exporting a Kaggle-style submission.
+- `requirements.txt` — exact dependencies used by the project.
+- `README.md` — repository guide.
 
 ## Data files
 
-Place the dataset files in the repository root before running the notebook or script:
+Place the following files in the repository root before running the notebook or script:
 
 - `train.csv`
 - `test.csv`
 
-The expected target column is:
+The target variable is:
 
 - `total_sales`
 
@@ -33,22 +33,28 @@ The expected target column is:
 pip install -r requirements.txt
 ```
 
-3. Run the training pipeline:
+3. Run the benchmark pipeline:
 
 ```bash
 python scripts/dsnml_training_pipeline.py
 ```
 
-This will produce:
+This will generate the following output files in the repository root:
 
 - `final_catboost_submission.csv`
-- `experiment_log.csv`
 - `oof_predictions.csv`
+- `experiment_log.csv`
 
 ## Notebook usage
 
-Open the notebook in Google Colab or Jupyter, and run the cells in order.
+Open the notebook in Google Colab or Jupyter and run the cells in order. It covers:
+
+- dataset preview and diagnostics
+- engineered features
+- CV evaluation across multiple models
+- residual analysis
+- submission generation
 
 ## Notes
 
-The project uses a deterministic feature engineering strategy and CatBoost with 5-fold cross-validation for robust retail forecasting.
+This project is intended for experimentation and robust model comparison. It is suitable for use in local Python environments, Colab, and Kaggle competition-style submission workflows.
